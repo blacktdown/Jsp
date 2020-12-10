@@ -1,3 +1,4 @@
+<%@page import="kr.co.jboard1.dao.UserDao"%>
 <%@page import="kr.co.jboard1.bean.TermsBean"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
@@ -5,38 +6,7 @@
 <%@page import="java.sql.DriverManager"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	
-	// DB정보(HeidiSQL 접속)
-	String host = "jdbc:mysql://192.168.10.114:3306/pjw";
-	String user = "pjw";
-	String pass = "1234";
-	
-	// 1단계 - JDBC 드라이버 로드
-	Class.forName("com.mysql.jdbc.Driver");
-	
-	// 2단계 - 데이터베이스 접속
-	Connection conn = DriverManager.getConnection(host, user, pass);
-	
-	// 3단계 - SQL 실행객체 생성
-	Statement stmt = conn.createStatement();
-	
-	// 4단계 - SQL 실행
-	String sql = "SELECT * FROM `JBOARD_TERMS`;";
-	ResultSet rs = stmt.executeQuery(sql);
-	
-	// 5단계 - 결과셋 처리(SELECT일 경우 - Bean을 사용)
-	TermsBean tb = new TermsBean();
-	
-	if(rs.next()){
-		tb.setTerms(rs.getString(1));
-		tb.setPrivacy(rs.getString(2));
-	}
-	
-	// 6단계 - 데이터베이스 종료
-	conn.close();
-	stmt.close();
-	rs.close();
-
+	TermsBean tb = UserDao.getInstance().selectTerms();
 %>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,3 +1,4 @@
+<%@page import="kr.co.jboard1.dao.ArticleDao"%>
 <%@page import="kr.co.jboard1.bean.ArticleBean"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
@@ -10,54 +11,8 @@
 	request.setCharacterEncoding("UTF-8");
 	String seq = request.getParameter("seq"); // list 에서 따옴
 
-	// DB정보(HeidiSQL 접속)
-	String host = "jdbc:mysql://192.168.10.114:3306/pjw";
-	String user = "pjw";
-	String pass = "1234";
-	
-	// 1단계
-	Class.forName("com.mysql.jdbc.Driver");
-	
-	// 2단계
-	Connection conn = DriverManager.getConnection(host, user, pass);
-	
-	// 3단계
-	Statement stmt = conn.createStatement();
-	Statement stmtUpdate = conn.createStatement();
-	
-	// 4단계
-	String sqlUpdate = "UPDATE `JBOARD_ARTICLE` SET `hit`=`hit`+1 WHERE `seq` =" +seq;	//조회수
-	
-	String sql = "SELECT * FROM `JBOARD_ARTICLE` ";
-			sql += "WHERE `seq`="+seq;
-	
-	// execute 여러개 쓰는 상황일때
-	ResultSet rs = stmt.executeQuery(sql);
-	stmtUpdate.executeUpdate(sqlUpdate);
-	
-	// 5단계
-	ArticleBean ab = new ArticleBean();
-	
-	if(rs.next()){
-
-		ab.setSeq(rs.getInt(1));
-		ab.setParent(rs.getInt(2));
-		ab.setComment(rs.getInt(3));
-		ab.setCate(rs.getString(4));
-		ab.setTitle(rs.getString(5));
-		ab.setContent(rs.getString(6));
-		ab.setFile(rs.getInt(7));
-		ab.setHit(rs.getInt(8));
-		ab.setUid(rs.getString(9));
-		ab.setRegip(rs.getString(10));
-		ab.setRdate(rs.getString(11));
-	}
-	
-	// 6단계
-	conn.close();
-	stmt.close();
-	stmtUpdate.close();
-	rs.close();
+	ArticleBean ab = ArticleDao.getInstance().selectArticle(seq);
+	ArticleDao.getInstance().updateHit(seq);
 
 %>
 <!DOCTYPE html>
