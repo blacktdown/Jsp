@@ -10,8 +10,25 @@ public class ArticleBean {
 	private String content;
 	private int file;
 	private int hit;
+
+	
 	// 추가필드
 	private String nick;
+	private String oldName;
+	
+	public String getOldName() {
+		return oldName;
+	}
+	public void setOldName(String oldName) {
+		this.oldName = oldName;
+	}
+	public int getDownload() {
+		return download;
+	}
+	public void setDownload(int download) {
+		this.download = download;
+	}
+	private int download;
 	
 	public String getNick() {
 		return nick;
@@ -56,12 +73,14 @@ public class ArticleBean {
 	public void setContent(String content) {
 		this.content = content;
 	}
+
 	public int getFile() {
 		return file;
 	}
 	public void setFile(int file) {
 		this.file = file;
 	}
+	
 	public int getHit() {
 		return hit;
 	}

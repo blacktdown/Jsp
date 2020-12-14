@@ -10,8 +10,11 @@
 	// 파라미터 수신
 	request.setCharacterEncoding("UTF-8");
 	String seq = request.getParameter("seq"); // list 에서 따옴
-
+	
+	// 조회글 가져오기
 	ArticleBean ab = ArticleDao.getInstance().selectArticle(seq);
+	
+	// 조회수 업데이트
 	ArticleDao.getInstance().updateHit(seq);
 
 %>
@@ -35,8 +38,8 @@
                 <tr>
                     <td>첨부파일</td>
                     <td>
-                        <a href="#">2020년 상반기 매출자료.xls</a>
-                        <span>7회 다운로드</span>
+                        <a href="#"><%= ab.getOldName() %></a>
+                        <span><%= ab.getDownload() %>회 다운로드</span>
                     </td>
                
                 </tr>

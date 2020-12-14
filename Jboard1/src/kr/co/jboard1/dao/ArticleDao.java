@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.jboard1.bean.ArticleBean;
+import kr.co.jboard1.bean.FileBean;
 import kr.co.jboard1.db.DBConfig;
 
 public class ArticleDao {
@@ -98,11 +99,27 @@ public class ArticleDao {
 		return total;
 	}
 	
-	public void insertArticle(ArticleBean ab) throws Exception {
+	public void insertFile(FileBean fb) throws Exception {
+		
+		conn = DBConfig.getInstance().getConnection();
+		stmt = conn.createStatement();
+		
+		String sql = "INSERT INTO `JBOARD_FILE` SET";
+			   sql += "`parent`="+fb.getParent()+",";
+			   sql += "`oldName`='"+fb.getOldName()+"',";
+			   sql += "`newName`='"+fb.getNewName()+"',";
+			   sql += "`rdate`=NOW();";
+			   
+		stmt.executeUpdate(sql);
+			   
+		close();
+		
+	}
+	
+	public int insertArticle(ArticleBean ab) throws Exception {
 
 		
-		DBConfig db = DBConfig.getInstance();
-		db.getConnection();
+		conn = DBConfig.getInstance().getConnection();
 		
 		// 3단계
 		stmt = conn.createStatement();
@@ -111,6 +128,7 @@ public class ArticleDao {
 			String sql  = "INSERT INTO `JBOARD_ARTICLE` SET ";
 				   sql += "`title`='"+ab.getTitle()+"',";
 				   sql += "`content`='"+ab.getContent()+"',"; 
+				   sql += "`file`="+ab.getFile()+","; 
 				   sql += "`uid`='"+ab.getUid()+"',";
 				   sql += "`regip`='"+ab.getRegip()+"',";
 				   sql += "`rdate`=NOW();"; 
@@ -119,8 +137,32 @@ public class ArticleDao {
 			
 		// 5단계
 		// 6단계
-			stmt.close();
-			conn.close();
+		close();
+		
+		return selectMaxSeq();
+
+		
+	}
+	
+	public int selectMaxSeq() throws Exception {
+		
+		conn = DBConfig.getInstance().getConnection();
+		stmt = conn.createStatement();
+		
+		String sql = "SELECT MAX(`seq`) FROM `JBOARD_ARTICLE`;";
+		
+		rs = stmt.executeQuery(sql);
+		
+		int parent = 0;
+		
+		if(rs.next()) {
+			parent = rs.getInt(1);
+		}
+		
+		close();
+		
+		return parent;
+		
 	}
 	
 	public ArticleBean selectArticle(String seq) throws Exception {
@@ -130,8 +172,10 @@ public class ArticleDao {
 		stmt = conn.createStatement();
 		
 		// 4단계
-		String sql = "SELECT * FROM `JBOARD_ARTICLE` ";
-				sql += "WHERE `seq`="+seq;
+		String sql = "SELECT a.*, b.oldName, b.download FROM  `JBOARD_ARTICLE` AS a ";
+				sql += "LEFT JOIN `JBOARD_FILE` AS b ";
+				sql += "ON a.seq = b.parent ";
+				sql += "WHERE a.seq="+seq;
 		
 		// execute 여러개 쓰는 상황일때
 		rs = stmt.executeQuery(sql);
@@ -152,6 +196,9 @@ public class ArticleDao {
 			ab.setUid(rs.getString(9));
 			ab.setRegip(rs.getString(10));
 			ab.setRdate(rs.getString(11));
+			ab.setOldName(rs.getString(12));
+			ab.setDownload(rs.getInt(13));
+			
 		}
 		
 		// 6단계
@@ -264,7 +311,7 @@ public class ArticleDao {
 	
 	
 	public void close() throws Exception{
-		if(rs == null) rs.close();
+		if(rs != null) rs.close();
 		if(stmt != null) stmt.close();
 		if(psmt != null) psmt.close();
 		if(conn != null) conn.close();
