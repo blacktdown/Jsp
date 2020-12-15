@@ -84,7 +84,7 @@ public class ArticleDao {
 		stmt = conn.createStatement();
 		
 		// 4단계
-		String sql = "SELECT COUNT(*) FROM `JBOARD_ARTICLE` ";
+		String sql = "SELECT COUNT(*) FROM `JBOARD_ARTICLE`";
 		rs = stmt.executeQuery(sql);
 		
 		// 5단계
@@ -99,6 +99,7 @@ public class ArticleDao {
 		return total;
 	}
 	
+	// 파일 메서드
 	public void updateFileDownload(String seq) throws Exception {
 		
 		conn = DBConfig.getInstance().getConnection();
@@ -114,7 +115,6 @@ public class ArticleDao {
 		close();
 		
 	}
-	
 	public void insertFile(FileBean fb) throws Exception {
 		
 		conn = DBConfig.getInstance().getConnection();
@@ -131,7 +131,6 @@ public class ArticleDao {
 		close();
 		
 	}
-	
 	public FileBean selectFile(String seq) throws Exception {
 		conn = DBConfig.getInstance().getConnection();
 		
@@ -262,6 +261,7 @@ public class ArticleDao {
 		String sql = "SELECT a.*, b.nick FROM `JBOARD_ARTICLE` AS a ";
 				sql += "JOIN `JBOARD_MEMBER` AS b ";
 				sql += "ON a.uid = b.uid ";
+				sql += "WHERE `parent`= 0 ";
 				sql += "ORDER BY `seq` DESC ";
 				sql += "LIMIT "+limitStart+", 10;";
 		rs = stmt.executeQuery(sql);
@@ -350,8 +350,77 @@ public class ArticleDao {
 		close();
 	}
 	
+	// 댓글 관련 메서드
+	public void updateCommentCount(String seq) throws Exception {
+		conn = DBConfig.getInstance().getConnection();
+		stmt = conn.createStatement();
+		
+		String sql = "UPDATE `JBOARD_ARTICLE` SET `comment` = `comment` +1 ";
+				sql += "WHERE `seq`="+seq;
+		stmt.executeUpdate(sql);
+		
+		close();
+	}
+	public void insertComment(ArticleBean ab) throws Exception {
+		
+		conn = DBConfig.getInstance().getConnection();
+		stmt = conn.createStatement();
+		
+		String sql = "INSERT INTO `JBOARD_ARTICLE` SET ";
+				sql += "`parent`="+ab.getParent()+", ";
+				sql += "`content`='"+ab.getContent()+"', ";
+				sql += "`uid`='"+ab.getUid()+"', ";
+				sql += "`regip`='"+ab.getRegip()+"', ";
+				sql += "`rdate`=NOW();";
+				
+		stmt.executeUpdate(sql);
+				
+		close();
+	}
+	public void selectComment() throws Exception {}
+	public List<ArticleBean> selectComments(String parent) throws Exception {
+		
+		conn  = DBConfig.getInstance().getConnection();
+		
+		stmt = conn.createStatement();
+		
+		String sql = "SELECT a.*, b.nick FROM `JBOARD_ARTICLE` AS a ";
+				sql += "JOIN `JBOARD_MEMBER` AS b ";
+				sql += "On a.uid=b.uid ";
+				sql += "WHERE `parent`="+parent+" ";
+				sql += "ORDER BY `seq` ASC;";
+		
+		rs = stmt.executeQuery(sql);
+		
+		List<ArticleBean> comments = new ArrayList<ArticleBean>();
+		while(rs.next()){
+			ArticleBean ab = new ArticleBean();
+
+			ab.setSeq(rs.getInt(1));
+			ab.setParent(rs.getInt(2));
+			ab.setComment(rs.getInt(3));
+			ab.setCate(rs.getString(4));
+			ab.setTitle(rs.getString(5));
+			ab.setContent(rs.getString(6));
+			ab.setFile(rs.getInt(7));
+			ab.setHit(rs.getInt(8));
+			ab.setUid(rs.getString(9));
+			ab.setRegip(rs.getString(10));
+			ab.setRdate(rs.getString(11));
+			ab.setNick(rs.getString(12));
+			
+			comments.add(ab);
+			
+		}
+		close();
+		
+		return comments;
+				
+	}
+	public void updateComment() throws Exception {}
+	public void deleteComment() throws Exception {}
 	
-	
+	// DB Access 해제 
 	public void close() throws Exception{
 		if(rs != null) rs.close();
 		if(stmt != null) stmt.close();

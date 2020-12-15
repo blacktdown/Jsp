@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="kr.co.jboard1.dao.ArticleDao"%>
 <%@page import="kr.co.jboard1.bean.ArticleBean"%>
 <%@page import="java.sql.ResultSet"%>
@@ -16,6 +17,9 @@
 	
 	// 조회수 업데이트
 	ArticleDao.getInstance().updateHit(seq);
+	
+	// 댓글 가져오기
+	List<ArticleBean> comments = ArticleDao.getInstance().selectComments(seq);
 
 %>
 <!DOCTYPE html>
@@ -60,19 +64,25 @@
             <!-- 댓글리스트 -->
             <section class="commentList">
                 <h3>댓글목록</h3>
-                <% if(ab.getComment() != 0) { %>
+                <% if(ab.getComment() > 0) { 
+                	for(ArticleBean comment : comments){
+                		
+                	
+                %>
                 <article class="comment">
                     <span>
-                        <span>길동이</span>
-                        <span>20-05-13</span>
+                        <span><%= comment.getNick() %></span>
+                        <span><%= comment.getRdate().substring(2, 10) %></span>
                     </span>
-                    <textarea name="comment" readonly>댓글 샘플입니다.</textarea>
+                    <textarea name="comment" readonly><%= comment.getContent() %></textarea>
                     <div>
                         <a href="#">삭제</a>
                         <a href="#">수정</a>
                     </div>
                 </article>
-                <% }else{ %>
+                <%
+                	}
+                }else{ %>
                 <p class="empty">
                     등록된 댓글이 없습니다.
                 </p>
@@ -82,7 +92,8 @@
             <!-- 댓글입력폼 -->
             <section class="commentForm">
                 <h3>댓글쓰기</h3>
-                <form action="#">
+                <form action="/Jboard1/proc/comment.jsp" method="post">
+                <input type="hidden" name="parent" value="<%= ab.getSeq() %>"/>
                     <textarea name="comment"></textarea>
                     <div>
                         <a href="#" class="btnCancel">취소</a>
