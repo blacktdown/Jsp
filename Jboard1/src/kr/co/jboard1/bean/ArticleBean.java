@@ -14,7 +14,16 @@ public class ArticleBean {
 	
 	// 추가필드
 	private String nick;
+	private int fileseq;
 	private String oldName;
+	private int download;
+	
+	public int getFileseq() {
+		return fileseq;
+	}
+	public void setFileseq(int fileseq) {
+		this.fileseq = fileseq;
+	}
 	
 	public String getOldName() {
 		return oldName;
@@ -28,7 +37,6 @@ public class ArticleBean {
 	public void setDownload(int download) {
 		this.download = download;
 	}
-	private int download;
 	
 	public String getNick() {
 		return nick;

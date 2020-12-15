@@ -38,7 +38,7 @@
                 <tr>
                     <td>첨부파일</td>
                     <td>
-                        <a href="#"><%= ab.getOldName() %></a>
+                        <a href="/Jboard1/proc/download.jsp?seq=<%= ab.getFileseq()%>"><%= ab.getOldName() %></a>
                         <span><%= ab.getDownload() %>회 다운로드</span>
                     </td>
                

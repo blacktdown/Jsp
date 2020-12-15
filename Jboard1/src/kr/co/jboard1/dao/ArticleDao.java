@@ -99,6 +99,22 @@ public class ArticleDao {
 		return total;
 	}
 	
+	public void updateFileDownload(String seq) throws Exception {
+		
+		conn = DBConfig.getInstance().getConnection();
+		
+		stmt = conn.createStatement();
+		
+		String sql = "UPDATE `JBOARD_FILE` SET `download` = `download` + 1 ";
+				sql += "WHERE `seq` = "+seq;
+				
+		stmt.executeUpdate(sql);
+		
+				
+		close();
+		
+	}
+	
 	public void insertFile(FileBean fb) throws Exception {
 		
 		conn = DBConfig.getInstance().getConnection();
@@ -114,6 +130,30 @@ public class ArticleDao {
 			   
 		close();
 		
+	}
+	
+	public FileBean selectFile(String seq) throws Exception {
+		conn = DBConfig.getInstance().getConnection();
+		
+		stmt = conn.createStatement();
+		
+		String sql = "SELECT * FROM `JBOARD_FILE` WHERE `seq`="+seq;
+		rs = stmt.executeQuery(sql);
+		
+		FileBean fb = new FileBean();
+		
+		if(rs.next()) {
+			fb.setSeq(rs.getInt(1));
+			fb.setParent(rs.getInt(2));
+			fb.setOldName(rs.getString(3));
+			fb.setNewName(rs.getString(4));
+			fb.setDownload(rs.getInt(5));
+			fb.setRdate(rs.getString(6));
+		}
+		
+		close();
+		
+		return fb;
 	}
 	
 	public int insertArticle(ArticleBean ab) throws Exception {
@@ -172,7 +212,7 @@ public class ArticleDao {
 		stmt = conn.createStatement();
 		
 		// 4단계
-		String sql = "SELECT a.*, b.oldName, b.download FROM  `JBOARD_ARTICLE` AS a ";
+		String sql = "SELECT a.*, b.seq, b.oldName, b.download FROM  `JBOARD_ARTICLE` AS a ";
 				sql += "LEFT JOIN `JBOARD_FILE` AS b ";
 				sql += "ON a.seq = b.parent ";
 				sql += "WHERE a.seq="+seq;
@@ -196,8 +236,9 @@ public class ArticleDao {
 			ab.setUid(rs.getString(9));
 			ab.setRegip(rs.getString(10));
 			ab.setRdate(rs.getString(11));
-			ab.setOldName(rs.getString(12));
-			ab.setDownload(rs.getInt(13));
+			ab.setFileseq(rs.getInt(12));
+			ab.setOldName(rs.getString(13));
+			ab.setDownload(rs.getInt(14));
 			
 		}
 		
@@ -293,6 +334,8 @@ public class ArticleDao {
 	
 	public void deleteArticle(String seq) throws Exception {
 		
+		conn = DBConfig.getInstance().getConnection();
+		
 		// 3단계
 		String sql = "DELETE FROM `JBOARD_ARTICLE` WHERE `seq`=?";
 		psmt = conn.prepareStatement(sql);
@@ -304,8 +347,7 @@ public class ArticleDao {
 		// 5단계
 		
 		// 6단계
-		conn.close();
-		psmt.close();
+		close();
 	}
 	
 	
