@@ -25,6 +25,60 @@ public class UserDao {
 	private Statement stmt;
 	private ResultSet rs;
 	
+	public int selectCountUser(String uid) throws Exception {
+		conn = DBConfig.getInstance().getConnection();
+		stmt = conn.createStatement();
+		
+		String sql = "SELECT COUNT(*) FROM `JBOARD_MEMBER` WHERE `uid`='"+uid+"';";
+		rs = stmt.executeQuery(sql);
+		
+		int count = 0;
+		
+		if(rs.next()) {
+			count = rs.getInt(1);
+		}
+		
+		close();
+		
+		return count;
+	}
+	
+	public int selectCountNick(String nick) throws Exception {
+		conn = DBConfig.getInstance().getConnection();
+		stmt = conn.createStatement();
+		
+		String sql = "SELECT COUNT(*) FROM `JBOARD_MEMBER` WHERE `nick`='"+nick+"';";
+		rs = stmt.executeQuery(sql);
+		
+		int count = 0;
+		
+		if(rs.next()) {
+			count = rs.getInt(1);
+		}
+		
+		close();
+		
+		return count;
+	}
+	
+	public int selectCountHp(String hp) throws Exception {
+		conn = DBConfig.getInstance().getConnection();
+		stmt = conn.createStatement();
+		
+		String sql = "SELECT COUNT(*) FROM `JBOARD_MEMBER` WHERE `hp`='"+hp+"';";
+		rs = stmt.executeQuery(sql);
+		
+		int count = 0;
+		
+		if(rs.next()) {
+			count = rs.getInt(1);
+		}
+		
+		close();
+		
+		return count;
+	}
+	
 	public void insertUser(MemberBean mb) throws Exception {
 		
 		conn = DBConfig.getInstance().getConnection();

@@ -5,6 +5,15 @@
     <meta charset="UTF-8">
     <title>회원가입</title>
     <link rel="stylesheet" href="../css/style.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="/Jboard1/js/checkUid.js"></script>    
+    <script src="/Jboard1/js/checkName.js"></script>    
+    <script src="/Jboard1/js/checkNick.js"></script>    
+    <script src="/Jboard1/js/checkHp.js"></script>
+    <script src="/Jboard1/js/checkPass.js"></script>
+    <script src="/Jboard1/js/zipcode.js"></script>
+    <script src="Jboard1/js/validation.js"></script>
 </head>
 <body>
     <div id="wrapper">
@@ -38,7 +47,8 @@
                     <tr>
                         <td>이름</td>
                         <td>
-                            <input type="text" name="name" placeholder="이름 입력"/>                            
+                            <input type="text" name="name" placeholder="이름 입력"/>     
+                             <span class="resultName"></span>                       
                         </td>
                     </tr>
                     <tr>
@@ -65,14 +75,14 @@
                         <td>주소</td>
                         <td>
                             <div>
-                                <input type="text" name="zip" placeholder="우편번호" readonly/>
-                                <button class="btnZip">주소검색</button>
+                                <input type="text"name="zip"  id="zip" placeholder="우편번호" readonly/>
+                                <button type="button" class="btnZip" onclick="zipcode()">주소검색</button>
                             </div>                            
                             <div>
-                                <input type="text" name="addr1" placeholder="주소를 검색하세요." readonly/>
+                                <input type="text" name="addr1" id="addr1" placeholder="주소를 검색하세요." readonly/>
                             </div>
                             <div>
-                                <input type="text" name="addr2" placeholder="상세주소를 입력하세요."/>
+                                <input type="text" name="addr2" id="addr2" placeholder="상세주소를 입력하세요."/>
                             </div>
                         </td>
                     </tr>
