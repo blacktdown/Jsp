@@ -309,20 +309,17 @@ main > .info > div > .account {
     width: 100%;
     height: auto;
 }
-
 #sub > div {
     position: relative;
     width: 100%;
     height: 184px;
     background-image: url('../img/sub_top_bg.jpg');
 }
-
 #sub > div > img {
     position: absolute;
     left: 10px;
     bottom: 10px;
 }
-
 #sub > section {
     width: 100%;
     height: auto;
@@ -336,22 +333,20 @@ main > .info > div > .account {
     background-repeat: no-repeat;
     background-position: right;
 }
-
 #sub > section > aside > img {
     margin: 16px;
 }
-
 #sub > section > aside > ul {
     width: 175px;
     height: 233px;
-    background-image: url('../img/sub_aside_bg_lnb.png');
     padding-top: 26px;
+    background-image: url('../img/sub_aside_bg_lnb.png');
     box-sizing: border-box;
 }
 #sub > section > aside > ul > li {
     width: 100%;
     height: 29px;
-    margin-bottom: 6px;            
+    margin-bottom: 6px;
 }
 #sub > section > aside > ul a {
     display: block;
@@ -359,21 +354,49 @@ main > .info > div > .account {
     height: 100%;
     font-size: 0;
 }
-
 #sub > section > article {
+    position: relative;
     float: left;
     width: 802px;
     min-height: 650px;
     padding-left: 40px;
     box-sizing: border-box;
-}
 
+}
+#sub > section > article > div {
+    position: relative;
+    width: 760px;
+    height: 164px;
+    background-image: url('../img/sub_page1_article_bg.jpg');
+}
+#sub > section > article > div > img {
+    position: absolute;
+    left: 0;
+    bottom: 30px;
+}
+#sub > section > article > p {
+    float: left;
+    width: 489px;
+    padding-top: 20px;
+    font-size: 11px;
+    line-height: 17px;
+    color: #666;
+}
+#sub > section > article > p > em {
+    font-weight: bold;
+    color: #91ba15;
+}
+#sub > section > article > img {
+    float: right;
+    width: 251px;
+    margin-top: 20px;
+}
 #sub > section > article > nav {
     position: relative;
     width: 100%;
     height: 72px;
     margin-bottom: 40px;
-    border-bottom: 1px solid #c2c2c2;
+    border-bottom: 2px solid #c2c2c2;
     box-sizing: border-box;
 }
 #sub > section > article > nav > img {
@@ -388,13 +411,13 @@ main > .info > div > .account {
     color: #8c8c8c;
     padding-left: 20px;
     box-sizing: border-box;
-    background-image: url(../img/sub_page_nav_ico.gif);
+    background-image: url('../img/sub_page_nav_ico.gif');
     background-repeat: no-repeat;
     background-position: 10px;
 }
 #sub > section > article > nav > p > em {
     font-weight: bold;
-    color: #91BA15;
+    color: #91ba15;
 }
 
 /* 팜스토리 소개 */
