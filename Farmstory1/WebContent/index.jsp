@@ -119,12 +119,22 @@
         </div>
         
     </div>
-
-    <div class="info">
-        <div>
-            <img src="./img/main_sub2_cs_tit.png" class="tit" alt="고객센터 안내"/>
-
-        </div>
+               <div class="info">
+                <div>
+                    <img src="./img/main_sub2_cs_tit.png" class="tit" alt="고객센터 안내"/>
+                    <div>
+                        <img src="./img/main_sub2_cs_img.png" alt="">
+                        <img src="./img/main_sub2_cs_txt.png" alt="">
+                    </div>
+                    <p class="worktime">
+                        평일: AM 09:00 ~ PM 06:00<br />
+                        점심: PM 12:00 ~ PM 01:00<br />
+                        토, 일요일, 공휴일 휴무<br />
+                    </p>
+                    <a href="#"><img src="./img/main_sub2_cs_bt1.png" alt="1:1고객질문"></a>
+                    <a href="#"><img src="./img/main_sub2_cs_bt2.png" alt="자주묻는 질문"></a>
+                    <a href="#"><img src="./img/main_sub2_cs_bt3.png" alt="배송 조회"></a>
+                </div>
         <div>
             <img src="./img/main_sub2_account_tit.png" class="tit" alt="계좌안내"/>
             <p class="account">

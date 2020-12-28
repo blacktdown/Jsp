@@ -1,3 +1,4 @@
+<%@page import="kr.co.farmstory1.bean.MemberBean"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,8 +19,15 @@
             <a href="/Farmstory1" class="logo"><img src="/Farmstory1/img/logo.png" alt="로고"/></a>
             <p>
                 <a href="/Farmstory1">HOME |</a>
+                <% 
+                	MemberBean mb = (MemberBean) session.getAttribute("smember");
+                	if(mb == null){ 
+                %>
                 <a href="/Farmstory1/user/login.jsp">로그인 |</a>
                 <a href="/Farmstory1/user/terms.jsp">회원가입 |</a>
+                <% }else{ %>
+                <a href="/Farmstory1/user/proc/logout.jsp">로그아웃 |</a>
+                <% } %>
                 <a href="#">고객센터</a>
             </p>
             <img src="/Farmstory1/img/head_txt_img.png" alt="3만원 이상 무료배송"/>

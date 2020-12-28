@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../_header.jsp" %>
 <section id="user" class="register">
-    <form action="#" method="POST">
+    <form action="/Farmstory1/user/proc/register.jsp" method="POST">
         <table border="1">
             <caption>사이트 이용정보 입력</caption>
             <tr>

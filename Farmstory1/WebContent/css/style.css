@@ -1,8 +1,9 @@
-/* ÀüÃ¼ ½ºÅ¸ÀÏ ÃÊ±âÈ­ */
+/* ì „ì²´ ìŠ¤íƒ€ì¼ ì´ˆê¸°í™” */
 * {
     margin: 0;
     padding: 0;
-    font: normal 12px 'µ¸¿ò';
+    outline: none;
+    font: normal 12px 'ë‹ì›€';
 }
 ul, ol {list-style: none;}
 a {text-decoration: none; color: #111;}
@@ -13,7 +14,7 @@ a {text-decoration: none; color: #111;}
     margin: 0 auto;
 }
 
-/* Çì´õ¿µ¿ª */
+/* í—¤ë”ì˜ì—­ */
 header {
     position: relative;
     width: 100%;
@@ -84,7 +85,7 @@ header > .gnb > li:nth-child(5) > a:hover {background-image: url('../img/head_me
 
 
 
-/* ÇªÅÍ¿µ¿ª */
+/* í‘¸í„°ì˜ì—­ */
 footer {
     width: 100%;
     height: 120px;
@@ -106,7 +107,7 @@ footer > p > em {
     font-weight: bold;
 }
 
-/* ¸ÞÀÎ(index) */
+/* ë©”ì¸(index) */
 main {
     width: 100%;
     height: auto;
@@ -117,7 +118,7 @@ main > div {
     margin-top: 10px;
 }
 
-/* ¸ÞÀÎ - slider */
+/* ë©”ì¸ - slider */
 main > .slider {
     position: relative;
     height: 312px;
@@ -158,7 +159,7 @@ main > .slider > .banner > img:nth-child(3) {
     background: #fff;
 }
 
-/* ¸ÞÀÎ - quick */
+/* ë©”ì¸ - quick */
 main > .quick {
     height: 74px;
     overflow: hidden;
@@ -175,7 +176,7 @@ main > .quick > a {
 main > .quick > a:nth-child(1) {background-image: url('../img/main_banner_sub1_bg.jpg');}
 main > .quick > a:nth-child(2) {background-image: url('../img/main_banner_sub2_bg.jpg');}
 
-/* ¸ÞÀÎ - latest */
+/* ë©”ì¸ - latest */
 main > .latest {
     height: 186px;
     overflow: hidden;
@@ -215,21 +216,35 @@ main > .latest table tr > td > a{
 }
 
 
-/* ¸ÞÀÎ - info */
+/* ë©”ì¸ - info */
 main > .info {
     height: 154px;
     overflow: hidden;
     padding: 10px 0;
     border-top: 2px solid #756c65;
     box-sizing: border-box;
+    overflow: hidden;
 }
-
 main > .info > div {
+    position: relative;
     float: left;
     height: 100%;
 }
 main > .info > div:nth-child(1) {
+    
     width: 386px;
+    
+}
+main > .info > div > p {
+    position: absolute;
+    right: 45px;
+    top: 34px;
+    color: #666;
+    font-size: 11px;
+    line-height: 15px;
+}
+main > .info > div > a img {
+    padding-top: 20px;
 }
 main > .info > div:nth-child(2) {
     width: 230px;
@@ -259,7 +274,7 @@ main > .info > div > .account {
     line-height: 26px;
 }
 
-/* ÅÇ Ä¿½ºÅÒ */
+/* íƒ­ ì»¤ìŠ¤í…€ */
 .ui-widget.ui-widget-content {
     border: none;
 }
@@ -289,7 +304,7 @@ main > .info > div > .account {
 }
 
 
-/* ¼­ºêÆäÀÌÁö °øÅë */
+/* ì„œë¸ŒíŽ˜ì´ì§€ ê³µí†µ */
 #sub {
     width: 100%;
     height: auto;
@@ -382,7 +397,7 @@ main > .info > div > .account {
     color: #91BA15;
 }
 
-/* ÆÊ½ºÅä¸® ¼Ò°³ */
+/* íŒœìŠ¤í† ë¦¬ ì†Œê°œ */
 #sub > .cate1 .lnb > li:nth-child(1) > a {background-image: url('../img/sub_cate1_lnb1.png');}
 #sub > .cate1 .lnb > li:nth-child(2) > a {background-image: url('../img/sub_cate1_lnb2.png');}
 #sub > .cate1 .lnb > li:nth-child(1) > a:hover {background-image: url('../img/sub_cate1_lnb1_ov.png');}
@@ -390,12 +405,12 @@ main > .info > div > .account {
 #sub > .cate1 .lnb > li:nth-child(1).on > a {background-image: url('../img/sub_cate1_lnb1_ov.png');}
 #sub > .cate1 .lnb > li:nth-child(2).on > a {background-image: url('../img/sub_cate1_lnb2_ov.png');}
 
-/* Àåº¸±â */
+/* ìž¥ë³´ê¸° */
 #sub > .cate2 .lnb > li:nth-child(1) > a {background-image: url('../img/sub_cate2_lnb1.png');}
 #sub > .cate2 .lnb > li:nth-child(1) > a:hover {background-image: url('../img/sub_cate2_lnb1_ov.png');}
 #sub > .cate2 .lnb > li:nth-child(1).on > a {background-image: url('../img/sub_cate2_lnb1_ov.png');}
 
-/* ³óÀÛ¹° ÀÌ¾ß±â */
+/* ë†ìž‘ë¬¼ ì´ì•¼ê¸° */
 #sub > .cate3 .lnb > li:nth-child(1) > a {background-image: url('../img/sub_cate3_lnb1.png');}
 #sub > .cate3 .lnb > li:nth-child(2) > a {background-image: url('../img/sub_cate3_lnb2.png');}
 #sub > .cate3 .lnb > li:nth-child(3) > a {background-image: url('../img/sub_cate3_lnb3.png');}
@@ -407,12 +422,12 @@ main > .info > div > .account {
 #sub > .cate3 .lnb > li:nth-child(3).on > a {background-image: url('../img/sub_cate3_lnb3_ov.png');}
 
 
-/* ÀÌº¥Æ® */
+/* ì´ë²¤íŠ¸ */
 #sub > .cate4 .lnb > li:nth-child(1) > a {background-image: url('../img/sub_cate4_lnb1.png');}
 #sub > .cate4 .lnb > li:nth-child(1) > a:hover {background-image: url('../img/sub_cate4_lnb1_ov.png');}
 #sub > .cate4 .lnb > li:nth-child(1).on > a {background-image: url('../img/sub_cate4_lnb1_ov.png');}
 
-/* Ä¿¹Â´ÏÆ¼ */
+/* ì»¤ë®¤ë‹ˆí‹° */
 #sub > .cate5 .lnb > li:nth-child(1) > a {background-image: url('../img/sub_cate5_lnb1.png');}
 #sub > .cate5 .lnb > li:nth-child(2) > a {background-image: url('../img/sub_cate5_lnb2.png');}
 #sub > .cate5 .lnb > li:nth-child(3) > a {background-image: url('../img/sub_cate5_lnb3.png');}
@@ -429,7 +444,7 @@ main > .info > div > .account {
 #sub > .cate5 .lnb > li:nth-child(4).on > a {background-image: url('../img/sub_cate5_lnb4_ov.png');}
 #sub > .cate5 .lnb > li:nth-child(5).on > a {background-image: url('../img/sub_cate5_lnb5_ov.png');}
 
-/* È¸¿ø-·Î±×ÀÎ */
+/* íšŒì›-ë¡œê·¸ì¸ */
 #user {}
 #user.login {
     width: 360px;
@@ -482,7 +497,7 @@ main > .info > div > .account {
     float: right;
 }
 
-/* È¸¿ø-¾à°ü */
+/* íšŒì›-ì•½ê´€ */
 #user.terms {
     width: 600px;
     margin: 60px auto;            
@@ -530,7 +545,7 @@ main > .info > div > .account {
 #user.terms > div > a:nth-child(1) {background: #fdfdfd;}
 #user.terms > div > a:nth-child(2) {background: #e9e9e9;}
 
-/* È¸¿ø-È¸¿ø°¡ÀÔ */
+/* íšŒì›-íšŒì›ê°€ìž… */
 #user.register {
     width: 600px;
     height: auto;
@@ -599,7 +614,7 @@ main > .info > div > .account {
     color: #111;
 }
 
-/* °Ô½ÃÆÇ - °øÅë */
+/* ê²Œì‹œíŒ - ê³µí†µ */
 #board {
     width: 720px;
     margin: 60px auto;            
@@ -650,7 +665,7 @@ main > .info > div > .account {
 #board .btnModify { padding: 8px; border: 1px solid #bebebe; background: #fdfdfd; color: #111;}
 #board .btnList   { padding: 8px; border: 1px solid #bebebe; background: #fdfdfd; color: #111;}
 
-/* °Ô½ÃÆÇ - ±Û¸ñ·Ï */
+/* ê²Œì‹œíŒ - ê¸€ëª©ë¡ */
 #board.list {
     position: relative;
 }
@@ -689,7 +704,7 @@ main > .info > div > .account {
     bottom: 14px;
     right: 0;
 }
-/* °Ô½ÃÆÇ-±Ûº¸±â */
+/* ê²Œì‹œíŒ-ê¸€ë³´ê¸° */
 #board.view > div {
     padding: 16px 0;
     text-align: right;
@@ -744,14 +759,14 @@ main > .info > div > .account {
 	display: none;
 }
 
-/* °Ô½ÃÆÇ-±Û¾²±â */
+/* ê²Œì‹œíŒ-ê¸€ì“°ê¸° */
 #board.write {}
 #board.write form > div {
     margin-top: 10px;
     text-align: right;
 }
 
-/* °Ô½ÃÆÇ-±Û¼öÁ¤ */
+/* ê²Œì‹œíŒ-ê¸€ìˆ˜ì • */
 #board.modify form > div {
     margin-top: 10px;
     text-align: right;
