@@ -19,7 +19,7 @@
                     HOME > 팜스토리소개 > <em>인사말</em>
                 </p>
             </nav>
-                    <div>
+                    <div class="subbg">
                         <img src="../img/sub_page1_article_txt.png" alt="건강한 먹거리를 위해 노력합니다.">
                     </div>
                     <!-- 내용시작 -->

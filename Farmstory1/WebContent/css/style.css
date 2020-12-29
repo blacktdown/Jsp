@@ -363,7 +363,7 @@ main > .info > div > .account {
     box-sizing: border-box;
 
 }
-#sub > section > article > div {
+#sub > section > article > .subbg {
     position: relative;
     width: 760px;
     height: 164px;
