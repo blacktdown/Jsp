@@ -1,3 +1,11 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="kr.co.farmstory1.bean.ArticleBean"%>
+<%@page import="java.util.List"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="kr.co.farmstory1.db.Sql"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="kr.co.farmstory1.db.DBConfig"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../_header.jsp" %>
 <%
@@ -6,6 +14,40 @@
 	String cate =request.getParameter("cate");
 	
 	String path = "./_aside_"+gnb+".jsp";
+	
+	// 1, 2단계
+	Connection conn = DBConfig.getInstance().getConnection();
+	
+	// 3단계
+	PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_ARTICLES);
+	psmt.setString(1, cate);
+	
+	// 4단계
+	ResultSet rs = psmt.executeQuery();
+	
+	// 5단계
+	List<ArticleBean> articles = new ArrayList<>();
+	while(rs.next()){
+		ArticleBean article = new ArticleBean();
+		article.setSeq(rs.getInt(1));
+		article.setParent(rs.getInt(2));
+		article.setComment(rs.getInt(3));
+		article.setCate(rs.getString(4));
+		article.setTitle(rs.getString(5));
+		article.setContent(rs.getString(6));
+		article.setFile(rs.getInt(7));
+		article.setHit(rs.getInt(8));
+		article.setUid(rs.getString(9));
+		article.setRegip(rs.getString(10));
+		article.setRdate(rs.getString(11));
+		
+		articles.add(article);
+	}
+	
+	// 6단계
+	conn.close();
+	psmt.close();
+	rs.close();
 %>
 
 <jsp:include page="<%= path %>">
@@ -23,13 +65,15 @@
                         <th>날짜</th>
                         <th>조회</th>
                     </tr>
+                    <% for(ArticleBean article : articles){ %>
                     <tr>
-                        <td>1</td>
-                        <td><a href="/Farmstory1/board/view.jsp?gnb=<%= gnb %>&cate=<%= cate %>">제목입니다.</a>&nbsp;[3]</td>
-                        <td>길동이</td>
-                        <td>20-12-29</td>
-                        <td>12</td>
+                        <td><%= article.getSeq() %></td>
+                        <td><a href="/Farmstory1/board/view.jsp?gnb=<%= gnb %>&cate=<%= cate %>"><%= article.getTitle() %></a>&nbsp;[<%= article.getComment() %>]</td>
+                        <td><%= article.getUid() %></td>
+                        <td><%= article.getRdate().substring(2, 10) %></td>
+                        <td><%= article.getHit() %></td>
                     </tr>
+                    <% } %>
                 </table>
             </article>
 

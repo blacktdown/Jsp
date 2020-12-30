@@ -6,11 +6,17 @@
 	String cate =request.getParameter("cate");
 	
 	String path = "./_aside_"+gnb+".jsp";
+	
+	// 로그인 여부 확인
+	MemberBean smember = (MemberBean) session.getAttribute("smember");
+	
+	if(smember == null){
+		// 로그인을 안했으면 로그인 페이지로 이동
+		response.sendRedirect("/Farmstory1/user/login.jsp");
+		return;
+	}
+	
 %>
-
-<jsp:include page="<%= path %>">
-	<jsp:param value="<%= cate %>" name="cate"/>
-</jsp:include>
 
 <jsp:include page="<%= path %>">
 	<jsp:param value="<%= cate %>" name="cate"/>
@@ -19,7 +25,10 @@
         <section id="board" class="write">
             <h3>글쓰기</h3>
             <article>
-                <form action="/Jboard1/proc/write.jsp" method="post" enctype="multipart/form-data">
+                <form action="/Farmstory1/board/proc/write.jsp" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="gnb" value="<%= gnb%>"/>
+                <input type="hidden" name="cate" value="<%= cate%>"/>
+                <input type="hidden" name="uid" value="<%= smember.getUid()%>"/>
                     <table>
                         <tr>
                             <td>제목</td>

@@ -1,5 +1,40 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="kr.co.farmstory1.bean.ArticleBean"%>
+<%@page import="java.util.List"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="kr.co.farmstory1.db.Sql"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="kr.co.farmstory1.db.DBConfig"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="./_header.jsp" %>
+<%
+	// 1, 2단계
+	Connection conn = DBConfig.getInstance().getConnection();
+
+	// 3단계
+	Statement stmt = conn.createStatement();
+	
+	// 4단계
+	ResultSet rs = stmt.executeQuery(Sql.SELECT_LATEST1);
+	
+	// 5단계
+	List<ArticleBean> latests = new ArrayList<>();
+	while(rs.next()){
+		ArticleBean article = new ArticleBean();
+		article.setSeq(rs.getInt(1));
+		article.setTitle(rs.getString(2));
+		article.setRdate(rs.getString(3));
+		
+		latests.add(article);
+	}
+	// 6단계
+	conn.close();
+	stmt.close();
+	rs.close();
+%>
+
 <main>
     <div class="slider">
 
@@ -28,93 +63,39 @@
             <a href="#"><img src="./img/main_latest1_tit.png" alt="텃밭 가꾸기"/></a>
             <img src="./img/main_latest1_img.jpg" alt="이미지"/>
             <table border="0">
+            <% for(int i=0; i<5; i++){ %>
                 <tr>
                     <td>></td>
-                    <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                    <td>20-12-22</td>
+                    <td><a href="#"><%= latests.get(i).getTitle() %></a></td>
+                    <td><%= latests.get(i).getRdate().substring(2, 10) %></td>
                 </tr>
-                <tr>
-                    <td>></td>
-                    <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                    <td>20-12-22</td>
-                </tr>
-                <tr>
-                    <td>></td>
-                    <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                    <td>20-12-22</td>
-                </tr>
-                <tr>
-                    <td>></td>
-                    <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                    <td>20-12-22</td>
-                </tr>
-                <tr>
-                    <td>></td>
-                    <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                    <td>20-12-22</td>
-                </tr>
+             <% } %>
             </table>
         </div>
         <div>
             <a href="#"><img src="./img/main_latest2_tit.png" alt="귀농학교"/></a>
             <img src="./img/main_latest2_img.jpg" alt="이미지"/>
             <table border="0">
+            <% for(int i=5; i<10; i++){ %>
                 <tr>
                     <td>></td>
-                    <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                    <td>20-12-22</td>
+                    <td><a href="#"><%= latests.get(i).getTitle() %></a></td>
+                    <td><%= latests.get(i).getRdate().substring(2, 10) %></td>
                 </tr>
-                <tr>
-                    <td>></td>
-                    <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                    <td>20-12-22</td>
-                </tr>
-                <tr>
-                    <td>></td>
-                    <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                    <td>20-12-22</td>
-                </tr>
-                <tr>
-                    <td>></td>
-                    <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                    <td>20-12-22</td>
-                </tr>
-                <tr>
-                    <td>></td>
-                    <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                    <td>20-12-22</td>
-                </tr>
+             <% } %>
             </table>
         </div>
         <div>
             <a href="#"><img src="./img/main_latest3_tit.png" alt="농작물 이야기"/></a>
             <img src="./img/main_latest3_img.jpg" alt="이미지"/>
             <table border="0">
+            <% for(int i=10 ; i<15 ; i++){ %>
                 <tr>
                     <td>></td>
-                    <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                    <td>20-12-22</td>
+                    <td><a href="#"><%= latests.get(i).getTitle() %></a></td>
+                    <td><%= latests.get(i).getRdate().substring(2, 10) %></td>
                 </tr>
-                <tr>
-                    <td>></td>
-                    <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                    <td>20-12-22</td>
-                </tr>
-                <tr>
-                    <td>></td>
-                    <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                    <td>20-12-22</td>
-                </tr>
-                <tr>
-                    <td>></td>
-                    <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                    <td>20-12-22</td>
-                </tr>
-                <tr>
-                    <td>></td>
-                    <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                    <td>20-12-22</td>
-                </tr>
+             <% } %>
             </table>
         </div>
         
@@ -153,25 +134,25 @@
                     <li><a href="#tabs-3">자주묻는 질문</a></li>
                 </ul>
                 <div id="tabs-1">
+                <% for(int i=15; i<18; i++){ %>
                     <ul>
-                        <li>· 홈페이지 오픈 기념 이벤트를 진행합니다.</li>
-                        <li>· 홈페이지 오픈 기념 이벤트를 진행합니다.</li>
-                        <li>· 홈페이지 오픈 기념 이벤트를 진행합니다.</li>
+                        <li>· <%= latests.get(i).getTitle() %></li>
                     </ul>
+                <% } %>
                 </div>
                 <div id="tabs-2">
+                <% for(int i=18; i<21; i++){ %>
                     <ul>
-                        <li>· 홈페이지 이용 관련 불편사항을 들려주세요.</li>
-                        <li>· 홈페이지 이용 관련 불편사항을 들려주세요.</li>
-                        <li>· 홈페이지 이용 관련 불편사항을 들려주세요.</li>
+                        <li>· <%= latests.get(i).getTitle() %></li>
                     </ul>
+                <% } %>
                 </div>
                 <div id="tabs-3">
+               <% for(int i=21; i<24; i++){ %>
                     <ul>
-                        <li>· 홈페이지를 오픈하였습니다.</li>
-                        <li>· 홈페이지를 오픈하였습니다.</li>
-                        <li>· 홈페이지를 오픈하였습니다.</li>
+                      	<li>· <%= latests.get(i).getTitle() %></li>
                     </ul>
+                <% } %>
                 </div>
             </div>
         </div>
