@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.co.jboard2.controller.CommonService;
 import kr.co.jboard2.dao.ArticleDao;
 
 public class WriteService implements CommonService {

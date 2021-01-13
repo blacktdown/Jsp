@@ -1,4 +1,4 @@
-package kr.co.jboard2.service;
+package kr.co.jboard2.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
