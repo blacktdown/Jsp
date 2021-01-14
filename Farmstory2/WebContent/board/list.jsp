@@ -3,6 +3,8 @@
 <%@ include file="../_header.jsp" %>
 <c:if test="${group eq 'croptalk'}"><%@ include file="./_aside_croptalk.jsp" %></c:if>
 <c:if test="${group eq 'market'}"><%@ include file="./_aside_market.jsp" %></c:if>
+<c:if test="${group eq 'event'}"><%@ include file="./_aside_event.jsp" %></c:if>
+<c:if test="${group eq 'community'}"><%@ include file="./_aside_community.jsp" %></c:if>
    <section id="board" class="list">
        <h3>글목록</h3>
        <article>
