@@ -1,6 +1,36 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../_header.jsp" %>
-    
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+	// 아이디 중복체크
+	$(function() {
+		$('input[name=uid]').focusout(
+		function() {
+			var uid = $(this).val();
+			var jsonData = {
+				'uid' : uid
+			};
+			$.ajax({
+				url : '/Farmstory2/user/checkUid.do',
+				type : 'get',
+				data : jsonData,
+				dataType : 'json',
+				success : function(data) {
+					if (data.result == 1) {
+						$('.resultId').css('color', 'red').text(
+								'이미 사용하는 아이디 입니다.');
+					} else {
+						$('.resultId').css('color', 'green').text(
+								'사용할 수 있는 아이디 입니다.');
+					}
+				}
+			});
+		});
+	});
+</script>
+
 <section id="user" class="register">
     <form action="/Farmstory2/user/register.do" method="POST">
         <table border="1">

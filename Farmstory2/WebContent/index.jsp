@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="./_header.jsp" %>
         <main>
             <div class="slider">
@@ -28,93 +29,39 @@
                     <a href="#"><img src="/Farmstory2/img/main_latest1_tit.png" alt="텃밭 가꾸기"/></a>
                     <img src="/Farmstory2/img/main_latest1_img.jpg" alt="이미지"/>
                     <table border="0">
+                    	<c:forEach var="i" begin="0" end="4">
                         <tr>
                             <td>></td>
-                            <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                            <td>20-12-22</td>
+                            <td><a href="#">${latests.get(i).title}</a></td>
+                            <td>${latests.get(i).rdate.substring(2, 10)}</td>
                         </tr>
-                        <tr>
-                            <td>></td>
-                            <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                            <td>20-12-22</td>
-                        </tr>
-                        <tr>
-                            <td>></td>
-                            <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                            <td>20-12-22</td>
-                        </tr>
-                        <tr>
-                            <td>></td>
-                            <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                            <td>20-12-22</td>
-                        </tr>
-                        <tr>
-                            <td>></td>
-                            <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                            <td>20-12-22</td>
-                        </tr>
+                        </c:forEach>
                     </table>
                 </div>
                 <div>
                     <a href="#"><img src="/Farmstory2/img/main_latest2_tit.png" alt="귀농학교"/></a>
                     <img src="/Farmstory2/img/main_latest2_img.jpg" alt="이미지"/>
                     <table border="0">
+                        <c:forEach var="i" begin="5" end="9">
                         <tr>
                             <td>></td>
-                            <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                            <td>20-12-22</td>
+                            <td><a href="#">${latests.get(i).title}</a></td>
+                            <td>${latests.get(i).rdate.substring(2, 10)}</td>
                         </tr>
-                        <tr>
-                            <td>></td>
-                            <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                            <td>20-12-22</td>
-                        </tr>
-                        <tr>
-                            <td>></td>
-                            <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                            <td>20-12-22</td>
-                        </tr>
-                        <tr>
-                            <td>></td>
-                            <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                            <td>20-12-22</td>
-                        </tr>
-                        <tr>
-                            <td>></td>
-                            <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                            <td>20-12-22</td>
-                        </tr>
+                        </c:forEach>
                     </table>
                 </div>
                 <div>
                     <a href="#"><img src="/Farmstory2/img/main_latest3_tit.png" alt="농작물 이야기"/></a>
                     <img src="/Farmstory2/img/main_latest3_img.jpg" alt="이미지"/>
                     <table border="0">
+                        <c:forEach var="i" begin="9" end="13">
                         <tr>
                             <td>></td>
-                            <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                            <td>20-12-22</td>
+                            <td><a href="#">${latests.get(i).title}</a></td>
+                            <td>${latests.get(i).rdate.substring(2, 10)}</td>
                         </tr>
-                        <tr>
-                            <td>></td>
-                            <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                            <td>20-12-22</td>
-                        </tr>
-                        <tr>
-                            <td>></td>
-                            <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                            <td>20-12-22</td>
-                        </tr>
-                        <tr>
-                            <td>></td>
-                            <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                            <td>20-12-22</td>
-                        </tr>
-                        <tr>
-                            <td>></td>
-                            <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                            <td>20-12-22</td>
-                        </tr>
+                        </c:forEach>
                     </table>
                 </div>
                 
@@ -144,23 +91,23 @@
                         </ul>
                         <div id="tabs-1">
                             <ul>
-                                <li>· 홈페이지 오픈 기념 이벤트를 진행합니다.</li>
-                                <li>· 홈페이지 오픈 기념 이벤트를 진행합니다.</li>
-                                <li>· 홈페이지 오픈 기념 이벤트를 진행합니다.</li>
+                            <c:forEach var="i" begin="15" end="17">
+                                <li>${latests.get(i).title}</li>
+                            </c:forEach>
                             </ul>
                         </div>
                         <div id="tabs-2">
                             <ul>
-                                <li>· 홈페이지 이용 관련 불편사항을 들려주세요.</li>
-                                <li>· 홈페이지 이용 관련 불편사항을 들려주세요.</li>
-                                <li>· 홈페이지 이용 관련 불편사항을 들려주세요.</li>
+                                <c:forEach var="i" begin="18" end="20">
+                                <li>${latests.get(i).title}</li>
+                                </c:forEach>
                             </ul>
                         </div>
                         <div id="tabs-3">
                             <ul>
-                                <li>· 홈페이지를 오픈하였습니다.</li>
-                                <li>· 홈페이지를 오픈하였습니다.</li>
-                                <li>· 홈페이지를 오픈하였습니다.</li>
+                                <c:forEach var="i" begin="21" end="23">
+                                <li>${latests.get(i).title}</li>
+                                </c:forEach>
                             </ul>
                         </div>
                     </div>

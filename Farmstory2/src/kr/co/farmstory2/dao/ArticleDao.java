@@ -73,14 +73,15 @@ public class ArticleDao {
 	}
 	
 	
-	public void insertArticle(String title, String content, String uid, String regip) {
+	public void insertArticle(String cate, String title, String content, String uid, String regip) {
 		try {
 			Connection conn = DBConfig.getInstance().getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.INSERT_ARTICLE);
-			psmt.setString(1, title);
-			psmt.setString(2, content);
-			psmt.setString(3, uid);
-			psmt.setString(4, regip);
+			psmt.setString(1, cate);
+			psmt.setString(2, title);
+			psmt.setString(3, content);
+			psmt.setString(4, uid);
+			psmt.setString(5, regip);
 			
 			psmt.executeUpdate();
 			
@@ -146,14 +147,15 @@ public class ArticleDao {
 		}
 		return vo;
 	}
-	public List<ArticleVo> selectArticles(int start) {
+	public List<ArticleVo> selectArticles(String cate, int start) {
 		
 		List<ArticleVo> articles = new ArrayList<>();
 		
 		try {
 			Connection conn = DBConfig.getInstance().getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_ARTICLES);
-			psmt.setInt(1, start);
+			psmt.setString(1, cate);
+			psmt.setInt(2, start);
 			
 			ResultSet rs = psmt.executeQuery();
 			
@@ -184,6 +186,35 @@ public class ArticleDao {
 		}
 		return articles;
 	}
+	
+	public List<ArticleVo> selectLatest() {
+		List<ArticleVo> latests = new ArrayList<>();
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_LATEST);
+			
+			ResultSet rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				ArticleVo vo = new ArticleVo();
+				
+				vo.setSeq(rs.getInt(1));
+				vo.setTitle(rs.getString(2));
+				vo.setRdate(rs.getString(3));
+				
+				latests.add(vo);
+			}
+			rs.close();
+			psmt.close();
+			conn.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return latests;
+	}
+	
 	public void updateArticle() {}
 	public void deleteArticle() {}
 }
